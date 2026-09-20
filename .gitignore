@@ -1,0 +1,9 @@
+target/
+.env
+.mvn-cache/
+*.log
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.class

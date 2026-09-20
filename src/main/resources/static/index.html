@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExpenseTrack</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>ExpenseTrack</h1>
+        </div>
+        <div class="auth-actions">
+          <button id="logoutBtn" class="btn secondary hidden">Logout</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="authSection" class="panel">
+          <div class="auth-tabs">
+            <button class="tab active" data-target="loginFormPanel">Login</button>
+            <button class="tab" data-target="registerFormPanel">Register</button>
+          </div>
+
+          <div id="loginFormPanel" class="form-panel active">
+            <h2>Welcome back</h2>
+            <form id="loginForm">
+              <label>Email<input type="email" id="loginEmail" required /></label>
+              <label>Password<input type="password" id="loginPassword" required /></label>
+              <button class="btn primary" type="submit">Login</button>
+            </form>
+          </div>
+
+          <div id="registerFormPanel" class="form-panel">
+            <h2>Create account</h2>
+            <form id="registerForm">
+              <label>Name<input type="text" id="registerName" required /></label>
+              <label>Email<input type="email" id="registerEmail" required /></label>
+              <label>Password<input type="password" id="registerPassword" required minlength="8" /></label>
+              <button class="btn primary" type="submit">Register</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="dashboardSection" class="hidden">
+          <div class="summary-grid" id="summaryCards"></div>
+
+          <div class="panel forms-grid">
+            <div>
+              <h3>Add Expense</h3>
+              <form id="expenseForm">
+                <label>Amount<input type="number" id="expenseAmount" step="0.01" min="0.01" required /></label>
+                <label>Description<input type="text" id="expenseDescription" maxlength="255" required /></label>
+                <label>Category
+                  <select id="expenseCategory">
+                    <option value="FOOD">FOOD</option>
+                    <option value="TRANSPORT">TRANSPORT</option>
+                    <option value="SHOPPING">SHOPPING</option>
+                    <option value="ENTERTAINMENT">ENTERTAINMENT</option>
+                    <option value="BILLS">BILLS</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="EDUCATION">EDUCATION</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </label>
+                <label>Payment Method
+                  <select id="expensePaymentMethod">
+                    <option value="UPI">UPI</option>
+                    <option value="CASH">CASH</option>
+                    <option value="CREDIT_CARD">CREDIT_CARD</option>
+                    <option value="DEBIT_CARD">DEBIT_CARD</option>
+                    <option value="BANK_TRANSFER">BANK_TRANSFER</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </label>
+                <label>Expense Date<input type="date" id="expenseDate" required /></label>
+                <button class="btn primary" type="submit">Save Expense</button>
+              </form>
+            </div>
+
+            <div>
+              <h3>Filters</h3>
+              <div class="filters">
+                <label>Category
+                  <select id="filterCategory">
+                    <option value="">All</option>
+                    <option value="FOOD">FOOD</option>
+                    <option value="TRANSPORT">TRANSPORT</option>
+                    <option value="SHOPPING">SHOPPING</option>
+                    <option value="ENTERTAINMENT">ENTERTAINMENT</option>
+                    <option value="BILLS">BILLS</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="EDUCATION">EDUCATION</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </label>
+                <label>Payment Method
+                  <select id="filterPaymentMethod">
+                    <option value="">All</option>
+                    <option value="CASH">CASH</option>
+                    <option value="UPI">UPI</option>
+                    <option value="CREDIT_CARD">CREDIT_CARD</option>
+                    <option value="DEBIT_CARD">DEBIT_CARD</option>
+                    <option value="BANK_TRANSFER">BANK_TRANSFER</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </label>
+                <label>From<input type="date" id="filterFrom" /></label>
+                <label>To<input type="date" id="filterTo" /></label>
+                <label>Min<input type="number" id="filterMinAmount" step="0.01" /></label>
+                <label>Max<input type="number" id="filterMaxAmount" step="0.01" /></label>
+                <label>Search<input type="text" id="filterSearch" /></label>
+                <button id="applyFiltersBtn" class="btn secondary" type="button">Apply</button>
+                <button id="clearFiltersBtn" class="btn muted" type="button">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel analytics-grid">
+            <div>
+              <h3>Category Spending</h3>
+              <ul id="categorySummary" class="summary-list"></ul>
+            </div>
+            <div>
+              <h3>Monthly Spending</h3>
+              <ul id="monthlySummary" class="summary-list"></ul>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="table-header">
+              <h3>Expenses</h3>
+              <div class="pagination">
+                <button id="prevPageBtn" class="btn secondary" type="button">Previous</button>
+                <span id="pageInfo">Page 0</span>
+                <button id="nextPageBtn" class="btn secondary" type="button">Next</button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Method</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
