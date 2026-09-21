@@ -274,3 +274,18 @@ ExpensC/
 - Replace the development JWT fallback with a long, random secret through `EXPENSETRACK_JWT_SECRET`.
 - Keep `.env` files and local secret stores out of Git. The repository's `.gitignore` already excludes `.env`.
 - Use a least-privileged MySQL account outside local development and review the Hibernate DDL mode before production use.
+
+
+## Screenshots
+
+### Authentication
+
+![ExpensC Login and Registration](docs/screenshots/Login.png)
+
+### Dashboard
+
+![ExpensC Dashboard](docs/screenshots/Dashboard.png)
+
+### Analytics & Expense Management
+
+![ExpensC Analytics and Expense Management](docs/screenshots/Analytics.png)
